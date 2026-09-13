@@ -1,4 +1,6 @@
 const state = { places: [], filtered: [], map: null, cluster: null, markers: [], activeId: null, view: "map" };
+const STATION = [25.052, 121.544];
+const NEARBY_ZOOM = 17;
 const $ = (selector) => document.querySelector(selector);
 const categoryClass = { "健康餐": "health", "日式": "japanese", "中式": "chinese", "異國": "international", "咖啡": "coffee", "午休": "rest" };
 const categoryEmoji = { "健康餐": "🥗", "日式": "🍱", "中式": "🥟", "異國": "🍛", "咖啡": "☕", "午休": "🪑" };
@@ -60,11 +62,12 @@ function render() {
 }
 function initMap() {
   if (!window.L) { $("#map-fallback").hidden = false; return; }
-  state.map = L.map("map", { scrollWheelZoom: false }).setView([25.052, 121.544], 16);
+  state.map = L.map("map", { scrollWheelZoom: false }).setView(STATION, NEARBY_ZOOM);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>' }).addTo(state.map);
+  L.control.scale({ metric: true, imperial: false, maxWidth: 120 }).addTo(state.map);
   if (L.markerClusterGroup) state.cluster = L.markerClusterGroup({ maxClusterRadius: 43, spiderfyOnMaxZoom: true, iconCreateFunction: (cluster) => L.divIcon({ html: `<span>${cluster.getChildCount()}</span>`, className: "place-cluster", iconSize: [42, 42] }) }).addTo(state.map);
   const stationIcon = L.divIcon({ html: '<div class="station-pin">捷</div>', className: "", iconSize: [35,35], iconAnchor: [17,17] });
-  L.marker([25.052,121.544], { icon: stationIcon, zIndexOffset: -100 }).addTo(state.map).bindPopup("捷運南京復興站 G16・BR11");
+  L.marker(STATION, { icon: stationIcon, zIndexOffset: -100 }).addTo(state.map).bindPopup("捷運南京復興站 G16・BR11");
   renderMarkers();
 }
 function renderMarkers() {
@@ -83,10 +86,6 @@ function renderMarkers() {
     marker.on("click", () => { state.activeId = place.id; });
     return marker;
   });
-  const points = state.markers.map((marker) => marker.getLatLng());
-  if (points.length > 1) state.map.fitBounds(L.latLngBounds(points), { padding: [36, 36], maxZoom: 16 });
-  else if (points.length === 1) state.map.setView(points[0], 16);
-  else state.map.setView([25.052, 121.544], 16);
 }
 function openDetail(id, updateHash = true) {
   const place = state.places.find((item) => item.id === id);
