@@ -1,0 +1,66 @@
+{
+  "updatedAt": "2026-09-13",
+  "places": [
+    {
+      "id": "healthy-diet-nanjing",
+      "name": "常常好食・南京店",
+      "category": "健康餐",
+      "summary": "以地中海機能餐與蔬食為主，適合想吃得清爽的午休日。",
+      "description": "提供地中海機能餐、輕食與餐盒，可內用或外帶。南京店鄰近捷運 6 號出口。",
+      "address": "台北市松山區南京東路三段285號",
+      "coordinates": [25.0520, 121.5452],
+      "coordinatesApproximate": true,
+      "hours": { "weekday": "11:00–19:30", "weekend": null },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.healthydiet.com.tw/class",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "id": "donmono-nanjing",
+      "name": "三商鮮五丼・南京店",
+      "category": "日式",
+      "summary": "想吃一碗熱騰騰的丼飯，這裡有牛丼、親子丼與咖哩選擇。",
+      "description": "三商鮮五丼的南京店提供內用與外帶。品牌官網目前列有招牌牛丼等餐點；實際供應與售價以門市為準。",
+      "address": "台北市中山區南京東路三段115號",
+      "coordinates": [25.0521, 121.5409],
+      "coordinatesApproximate": true,
+      "hours": { "weekday": null, "weekend": null },
+      "price": { "min": 140, "max": 199, "note": "官網部分丼飯定價" },
+      "photos": [],
+      "sourceUrl": "https://donmono.com.tw/%E9%96%80%E5%B8%82%E8%B3%87%E8%A8%8A/",
+      "menuUrl": "https://donmono.com.tw/%E7%BE%8E%E5%91%B3%E4%B8%BC%E9%A3%AF/",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "id": "veggienius-taipei",
+      "name": "不葷主義茶餐廳・台北店",
+      "category": "中式",
+      "summary": "以蔬食做出港點、川菜與中式熱炒，適合約同事一起吃。",
+      "description": "主打蔬食茶餐廳料理，有港式點心與中式菜色。位於南京東路三段的二樓，聚餐前建議確認營業與訂位狀態。",
+      "address": "台北市松山區南京東路三段275號2樓",
+      "coordinates": [25.0520, 121.5447],
+      "coordinatesApproximate": true,
+      "hours": { "weekday": "11:30–15:00", "weekend": "11:30–15:00" },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://vegemap.merit-times.com/restaurant_detail/%E4%B8%8D%E8%91%B7%E4%B8%BB%E7%BE%A9%E8%8C%B6%E9%A4%90%E5%BB%B3-%E5%8F%B0%E5%8C%97%E5%BA%97",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "id": "muscle-beach-nanjing",
+      "name": "肌肉海灘・南京店",
+      "category": "健康餐",
+      "summary": "健康餐盒與蔬菜搭配，午餐想吃得有飽足感可以看看。",
+      "description": "從健康餐盒起家的店家，南京店位於敦化北路巷內。餐點與營業時間請以店家最新公告為準。",
+      "address": "台北市松山區敦化北路4巷45號",
+      "coordinates": [25.0510, 121.5470],
+      "coordinatesApproximate": true,
+      "hours": { "weekday": null, "weekend": null },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.musclebeach.tw/store-base/",
+      "verifiedAt": "2026-09-13"
+    }
+  ]
+}
