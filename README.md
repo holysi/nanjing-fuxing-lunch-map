@@ -1,5 +1,7 @@
 # 午間漫步｜南京復興午餐地圖
 
+公開網址：[https://holysi.github.io/nanjing-fuxing-lunch-map/](https://holysi.github.io/nanjing-fuxing-lunch-map/)
+
 可直接放在 GitHub Pages 的靜態網站。第一階段提供地圖、列表、店家詳細資料、類別／價格／平假日篩選及 Google 地圖步行導航。資料保存在 [`data/places.json`](data/places.json)，不需要資料庫。
 
 ## 本機預覽
