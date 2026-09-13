@@ -1,6 +1,6 @@
 const state = { places: [], filtered: [], map: null, cluster: null, markers: [], activeId: null, view: "map" };
 const STATION = [25.052, 121.544];
-const NEARBY_ZOOM = 17;
+const NEARBY_ZOOM = 18;
 const $ = (selector) => document.querySelector(selector);
 const categoryClass = { "健康餐": "health", "日式": "japanese", "中式": "chinese", "異國": "international", "咖啡": "coffee", "午休": "rest" };
 const categoryEmoji = { "健康餐": "🥗", "日式": "🍱", "中式": "🥟", "異國": "🍛", "咖啡": "☕", "午休": "🪑" };
@@ -32,7 +32,8 @@ function matchesPrice(place, filter) {
   if (filter === "all") return true;
   if (filter === "unknown") return !place.price;
   if (!place.price) return false;
-  const { min = 0, max = Infinity } = place.price;
+  const min = place.price.min ?? 0;
+  const max = place.price.max ?? Infinity;
   if (filter === "under150") return min < 150;
   if (filter === "150to250") return min <= 250 && max >= 150;
   return max > 250;
@@ -124,7 +125,7 @@ function bindEvents() {
 async function start() {
   bindEvents();
   try {
-    const response = await fetch("./data/places.json?v=20260913-2");
+    const response = await fetch("./data/places.json?v=20260913-5");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     state.places = Array.isArray(data.places) ? data.places : [];

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbf8f2" />
+    <meta name="description" content="新增南京復興午餐地圖店家，並調整首頁顯示順序。" />
+    <title>店家資料管理｜午間漫步</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="./styles.css?v=20260913-5" />
+    <link rel="stylesheet" href="./admin.css?v=20260913-5" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="./admin.js?v=20260913-5" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#add-place">跳至新增店家</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="午間漫步首頁"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>午間漫步<span class="brand-dot">.</span></span></a>
+        <a class="admin-back" href="./">← 返回地圖</a>
+      </header>
+      <main class="admin-main">
+        <div class="admin-heading"><p class="eyebrow"><span class="eyebrow-line"></span> CURATE THE NEIGHBORHOOD</p><h1>店家資料管理<span>.</span></h1><p>新增地點、調整首頁順序，完成後匯出資料檔。修改只會暫存在這個瀏覽器，管理者更新 GitHub 專案後才會公開。</p></div>
+        <div class="admin-toolbar"><div><strong id="admin-count">讀取店家中…</strong><span id="draft-label">目前以公開資料為基礎</span></div><div class="admin-toolbar-actions"><label class="import-button" for="import-file">匯入 JSON <input id="import-file" type="file" accept=".json,application/json" /></label><button id="reset-draft" type="button" class="text-button" hidden>重新載入公開資料</button></div></div>
+        <p id="admin-status" class="admin-status" role="status" aria-live="polite"></p>
+
+        <div class="admin-layout">
+          <section id="add-place" class="admin-panel" aria-labelledby="add-title">
+            <div class="panel-title"><span class="panel-number">01</span><div><p>ADD A PLACE</p><h2 id="add-title">新增店家</h2></div></div>
+            <form id="place-form">
+              <div class="field-grid"><label>店名（必填）<input name="name" required maxlength="80" placeholder="例如：巷口好食堂" /></label><label>類別（必填）<select name="category" required><option value="健康餐">健康餐</option><option value="日式">日式</option><option value="中式">中式</option><option value="異國">異國</option><option value="咖啡">咖啡</option><option value="午休">午休</option></select></label></div>
+              <label>地址（必填）<input name="address" required maxlength="160" placeholder="台北市…" /></label>
+              <label>簡述（必填）<input name="summary" required maxlength="160" placeholder="一句話介紹適合什麼樣的午餐" /></label>
+              <label>詳細介紹 <textarea name="description" rows="3" maxlength="1000" placeholder="餐點特色、用餐方式等；可稍後補充"></textarea></label>
+              <label>同學分享 <textarea name="peerNote" rows="2" maxlength="500" placeholder="主觀心得會在網站標為「同學分享」"></textarea></label>
+              <div class="field-grid"><label>平日午餐時段 <input name="weekday" maxlength="80" placeholder="例如：11:00–14:00；未知可留白" /></label><label>假日午餐時段 <input name="weekend" maxlength="80" placeholder="例如：週六 11:00–14:00" /></label></div>
+              <label class="check-row"><input name="weekendClosed" type="checkbox" /> 週六、日皆休息</label>
+              <div class="field-grid"><label>最低價格 NT$ <input name="priceMin" type="number" min="0" max="100000" step="1" placeholder="未知可留白" /></label><label>最高價格 NT$ <input name="priceMax" type="number" min="0" max="100000" step="1" placeholder="未知可留白" /></label></div>
+              <label>價格說明 <input name="priceNote" maxlength="160" placeholder="例如：部分主餐價格，請以現場為準" /></label>
+              <label>資訊來源網址 <input name="sourceUrl" type="url" placeholder="https://…（若有公開來源）" /></label>
+              <label>照片路徑或網址 <input name="photo" placeholder="例如：./images/my-lunch.jpg；須有使用授權" /></label>
+              <div class="picker-heading"><strong>在地圖選位置 <span>可選填</span></strong><p>點一下店面位置，或手動輸入經緯度。未定位的店家仍會出現在列表，但不顯示圖釘。</p></div>
+              <div id="picker-map" aria-label="點選新店所在位置的地圖"></div><p id="picker-fallback" class="picker-fallback" hidden>地圖暫時無法載入，可直接輸入座標。</p>
+              <div class="field-grid"><label>緯度 <input name="latitude" type="number" min="-90" max="90" step="any" placeholder="25.05…" /></label><label>經度 <input name="longitude" type="number" min="-180" max="180" step="any" placeholder="121.54…" /></label></div>
+              <label class="check-row"><input name="coordinatesApproximate" type="checkbox" checked /> 圖釘為示意位置，尚未精確核對</label>
+              <button class="admin-primary" type="submit">加入店家與排序清單 →</button>
+            </form>
+          </section>
+
+          <section class="admin-panel order-panel" aria-labelledby="order-title">
+            <div class="panel-title"><span class="panel-number">02</span><div><p>HOMEPAGE ORDER</p><h2 id="order-title">首頁顯示順序</h2></div></div>
+            <p class="panel-intro">列表與地圖右側店家依此排序。可拖曳、按上下箭頭，或輸入位置後按「移動」；新店會先加在最前面。</p>
+            <ol id="order-list" class="order-list" aria-label="店家順序"></ol>
+          </section>
+        </div>
+
+        <section class="export-panel" aria-labelledby="export-title"><div><p class="section-kicker">SAVE YOUR CHANGES</p><h2 id="export-title">將調整帶回網站</h2><p>下載完整的 <code>places.json</code>，或複製 JSON 到 GitHub 的檔案編輯頁。由管理者更新專案的 <code>data/places.json</code> 並提交後，首頁才會改變。也可匯入先前下載的檔案繼續編輯。</p></div><div class="export-actions"><button id="export-json" class="admin-primary" type="button" disabled>下載 places.json ↗</button><button id="copy-json" class="import-button" type="button" disabled>複製 JSON</button></div></section>
+        <details class="json-preview"><summary>檢查目前準備匯出的 JSON</summary><textarea id="json-preview" readonly spellcheck="false" aria-label="目前的完整店家資料 JSON"></textarea></details>
+      </main>
+    </div>
+  </body>
+</html>
