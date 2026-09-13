@@ -18,11 +18,11 @@
 
 ## 新增或修改店家
 
-編輯 `data/places.json` 的 `places` 陣列。每間店都需有不重複的 `id`、`name`、`category`、`summary`、`description`、`address`、`hours`、`price`、`photos`、`sourceUrl`、`verifiedAt`。`category` 使用 `健康餐`、`日式` 或 `中式`。`hours.weekday`、`hours.weekend` 填入午餐營業時段字串；不知道時填 `null`，該店便不會出現在該營業日的篩選結果。`price` 可填 `{"min": 140, "max": 199, "note": "官網部分餐點定價"}`；不知道時填 `null`。價格篩選依價格範圍是否相交判斷。
+編輯 `data/places.json` 的 `places` 陣列。每間店都需有不重複的 `id`、`name`、`category`、`summary`、`description`、`address`、`hours`、`price`、`photos`、`sourceUrl`、`verifiedAt`。`category` 使用 `健康餐`、`日式`、`中式`、`異國`、`咖啡` 或 `午休`。同學的主觀推薦可另外放在 `peerNote`，網站會清楚標示「同學分享」；`sourceUrl` 則是店名、地址等公開資訊的查核來源。`hours.weekday`、`hours.weekend` 填入午餐營業時段字串；不知道時填 `null`，該店便不會出現在該營業日的篩選結果。確知假日休息時可填 `"weekend": "週六、日休"` 並加 `"closedPeriods": ["weekend"]`。如果時段僅供外送參考，請加 `"hoursAreDelivery": true`，使平假日營業篩選不把它當作現場營業。`price` 可填 `{"min": 140, "max": 199, "note": "官網部分餐點定價"}`；不知道時填 `null`。價格篩選依價格範圍是否相交判斷。
 
 照片放在 `images/`，例如 `images/my-lunch.jpg`，並在 `photos` 填入 `["./images/my-lunch.jpg"]`。請使用自己拍攝或取得授權的照片；沒有照片時網站會顯示料理插圖。`coordinates` 採 `[緯度, 經度]` 格式，確認精確位置後將 `coordinatesApproximate` 設為 `false`。目前首批圖釘是示意座標；Google 地圖導航使用地址搜尋。
 
-修改店家資訊時，也請更新 `verifiedAt` 與 `sourceUrl`。營業時間與價格會變動，發布前應向店家再次確認。
+修改店家資訊時，也請更新 `verifiedAt` 與 `sourceUrl`。營業時間與價格會變動，發布前應向店家再次確認。對不上目前門牌或店名的同學推薦，先記在 [`data/pending-recommendations.md`](data/pending-recommendations.md)，不要直接在地圖放示意店家。
 
 ## 第二階段規劃
 
@@ -32,4 +32,4 @@ GitHub Pages 只有靜態檔案，無法安全地直接儲存使用者資料或 
 
 ## 資料與地圖
 
-首批資訊於 2026-09-13 根據店家或公開頁面整理，來源可在各店詳情開啟。部分營業時間、價格及精確座標尚待實地確認，介面會明確標示。地圖使用 [Leaflet](https://leafletjs.com/) 與 [OpenStreetMap](https://www.openstreetmap.org/copyright) 圖資；顯示地圖需要網路連線。
+首批與同學推薦資訊於 2026-09-13 根據店家、外送平台或公開頁面整理，來源可在各店詳情開啟。部分營業時間、價格及精確座標尚待實地確認，介面會明確標示。精確圖釘參考 OpenStreetMap 的店家地點資料；地址可確認但無精確座標時使用附近示意位置。地圖使用 [Leaflet](https://leafletjs.com/) 與 [OpenStreetMap](https://www.openstreetmap.org/copyright) 圖資；顯示地圖需要網路連線。

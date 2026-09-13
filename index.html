@@ -10,8 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
@@ -49,7 +51,7 @@
 
           <div class="filter-bar" aria-label="篩選店家">
             <div class="filter-icon" aria-hidden="true">☷</div>
-            <label>料理類別<select id="category-filter"><option value="all">所有類別</option><option value="健康餐">健康餐</option><option value="日式">日式</option><option value="中式">中式</option></select></label>
+            <label>料理類別<select id="category-filter"><option value="all">所有類別</option><option value="健康餐">健康餐</option><option value="日式">日式</option><option value="中式">中式</option><option value="異國">異國</option><option value="咖啡">咖啡</option><option value="午休">午休</option></select></label>
             <label>價格預算<select id="price-filter"><option value="all">不限價格</option><option value="under150">NT$150 以下</option><option value="150to250">NT$150–250</option><option value="over250">NT$250 以上</option><option value="unknown">價格待確認</option></select></label>
             <label>營業日<select id="day-filter"><option value="all">平日與假日</option><option value="weekday">平日午餐</option><option value="weekend">假日午餐</option></select></label>
             <button id="clear-filters" class="clear-button" type="button">清除篩選</button>
@@ -59,7 +61,7 @@
 
           <div id="map-view" class="map-layout" role="tabpanel" aria-labelledby="map-tab">
             <div class="map-wrap"><div id="map" aria-label="南京復興站附近店家地圖"></div><div id="map-fallback" class="map-fallback" hidden>地圖需要網路連線。你仍可使用列表查看店家並開啟 Google 地圖導航。</div><div class="map-note">圖釘位置供探索參考，導航請以店家地址為準。</div></div>
-            <div class="map-sidebar"><div class="sidebar-head"><div><span class="small-kicker">NEAR THE STATION</span><h3>附近的午餐</h3></div><span class="mini-pin">⌖</span></div><div id="map-cards" class="map-cards"></div></div>
+            <div class="map-sidebar"><div class="sidebar-head"><div><span class="small-kicker">NEAR THE STATION</span><h3>附近的午間去處</h3></div><span class="mini-pin">⌖</span></div><div id="map-cards" class="map-cards"></div></div>
           </div>
           <div id="list-view" class="list-view" role="tabpanel" aria-labelledby="list-tab" hidden><div id="list-cards" class="list-cards"></div></div>
           <p id="data-error" class="data-error" role="alert" hidden>店家資料暫時無法讀取，請重新整理頁面。</p>
