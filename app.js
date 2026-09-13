@@ -125,7 +125,7 @@ function bindEvents() {
 async function start() {
   bindEvents();
   try {
-    const response = await fetch("./data/places.json");
+    const response = await fetch("./data/places.json?v=20260913-2");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     state.places = Array.isArray(data.places) ? data.places : [];
