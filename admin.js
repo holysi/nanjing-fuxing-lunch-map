@@ -1,6 +1,6 @@
 const DRAFT_KEY = "nanjing-fuxing-places-draft-v1";
-const DATA_URL = "./data/places.json?v=20260913-5";
-const admin = { data: null, map: null, pin: null, dragFrom: null };
+const DATA_URL = "./data/places.json?v=20260915-1";
+const admin = { data: null, map: null, pin: null, dragFrom: null, editingId: null };
 const $ = (selector) => document.querySelector(selector);
 
 function escapeHtml(value) {
@@ -52,6 +52,12 @@ function renderOrder() {
   $("#order-list").innerHTML = places.map((place, index) => `<li class="order-item" data-index="${index}" draggable="true"><span class="drag-handle" aria-hidden="true">⋮⋮</span><span class="order-number">${index + 1}</span><div class="order-name"><strong>${escapeHtml(place.name)}</strong><small>${escapeHtml(place.category || "未分類")} · ${escapeHtml(place.address)}</small></div><label class="position-label">順序 <input type="number" min="1" max="${places.length}" value="${index + 1}" aria-label="${escapeHtml(place.name)}的首頁順序" /></label><button type="button" class="position-apply" data-move="position" aria-label="將${escapeHtml(place.name)}移至輸入的位置">移動</button><div class="order-arrows"><button type="button" data-move="up" aria-label="${escapeHtml(place.name)}上移" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="down" aria-label="${escapeHtml(place.name)}下移" ${index === places.length - 1 ? "disabled" : ""}>↓</button></div></li>`).join("");
 }
 
+function renderEditChoices() {
+  const select = $("#edit-place");
+  select.innerHTML = `<option value="">選擇一間店家以載入資料</option>${admin.data.places.map((place) => `<option value="${escapeHtml(place.id)}">${escapeHtml(place.name)}｜${escapeHtml(place.address)}</option>`).join("")}`;
+  select.value = admin.editingId || "";
+}
+
 function movePlace(from, to) {
   const places = admin.data.places;
   if (!Number.isInteger(from) || !Number.isInteger(to) || from < 0 || to < 0 || from >= places.length || to >= places.length || from === to) return;
@@ -71,11 +77,11 @@ function makeId() {
   return id;
 }
 
-function newPlace(form) {
+function placeFromForm(form, existing = null) {
   const value = (name) => String(form.get(name) ?? "").trim();
   const name = value("name");
   const address = value("address");
-  if (admin.data.places.some((place) => place.name === name && place.address === address)) throw new Error("相同店名與地址已在清單中。");
+  if (admin.data.places.some((place) => place.id !== existing?.id && place.name === name && place.address === address)) throw new Error("相同店名與地址已在清單中。");
 
   const latText = value("latitude");
   const lngText = value("longitude");
@@ -98,7 +104,8 @@ function newPlace(form) {
 
   const weekendClosed = form.has("weekendClosed");
   const place = {
-    id: makeId(), name, category: value("category"), summary: value("summary"),
+    ...existing,
+    id: existing?.id || makeId(), name, category: value("category"), summary: value("summary"),
     description: value("description") || value("summary"), address,
     coordinates: latText ? [latitude, longitude] : null,
     coordinatesApproximate: form.has("coordinatesApproximate"),
@@ -106,9 +113,55 @@ function newPlace(form) {
     price: min == null ? null : { min, max, note: value("priceNote") || "請以店家現場為準" },
     photos: photo ? [photo] : [], sourceUrl: sourceUrl || null, verifiedAt: todayInTaipei()
   };
-  if (value("peerNote")) place.peerNote = value("peerNote");
-  if (weekendClosed) place.closedPeriods = ["weekend"];
+  if (value("peerNote")) place.peerNote = value("peerNote"); else delete place.peerNote;
+  if (weekendClosed) place.closedPeriods = ["weekend"]; else delete place.closedPeriods;
   return place;
+}
+
+function resetForm() {
+  const form = $("#place-form");
+  form.reset();
+  admin.editingId = null;
+  $("#edit-place").value = "";
+  $("#form-kicker").textContent = "ADD A PLACE";
+  $("#add-title").textContent = "新增店家";
+  $("#form-submit").textContent = "加入店家與排序清單 →";
+  $("#cancel-edit").hidden = true;
+  $("#place-form [name=weekend]").disabled = false;
+  if (admin.pin) { admin.pin.remove(); admin.pin = null; }
+}
+
+function loadPlaceForEdit(id) {
+  const place = admin.data.places.find((item) => item.id === id);
+  if (!place) return resetForm();
+  const form = $("#place-form");
+  admin.editingId = place.id;
+  form.elements.name.value = place.name || "";
+  form.elements.category.value = place.category || "健康餐";
+  form.elements.address.value = place.address || "";
+  form.elements.summary.value = place.summary || "";
+  form.elements.description.value = place.description || "";
+  form.elements.peerNote.value = place.peerNote || "";
+  form.elements.weekday.value = place.hours?.weekday || "";
+  const closed = Boolean(place.closedPeriods?.includes("weekend"));
+  form.elements.weekendClosed.checked = closed;
+  form.elements.weekend.value = closed ? "" : place.hours?.weekend || "";
+  form.elements.weekend.disabled = closed;
+  form.elements.priceMin.value = place.price?.min ?? "";
+  form.elements.priceMax.value = place.price?.max ?? "";
+  form.elements.priceNote.value = place.price?.note || "";
+  form.elements.sourceUrl.value = place.sourceUrl || "";
+  form.elements.photo.value = place.photos?.[0] || "";
+  form.elements.latitude.value = place.coordinates?.[0] ?? "";
+  form.elements.longitude.value = place.coordinates?.[1] ?? "";
+  form.elements.coordinatesApproximate.checked = Boolean(place.coordinatesApproximate);
+  $("#edit-place").value = place.id;
+  $("#form-kicker").textContent = "EDIT A PLACE";
+  $("#add-title").textContent = `修改：${place.name}`;
+  $("#form-submit").textContent = "儲存店家修改 →";
+  $("#cancel-edit").hidden = false;
+  if (place.coordinates) setPin(place.coordinates[0], place.coordinates[1], true);
+  else if (admin.pin) { admin.pin.remove(); admin.pin = null; }
 }
 
 function setPin(latitude, longitude, pan = false) {
@@ -138,14 +191,21 @@ function bindEvents() {
   $("#place-form").addEventListener("submit", (event) => {
     event.preventDefault();
     try {
-      const place = newPlace(new FormData(event.currentTarget));
-      admin.data.places.unshift(place);
+      const existing = admin.editingId ? admin.data.places.find((place) => place.id === admin.editingId) : null;
+      const place = placeFromForm(new FormData(event.currentTarget), existing);
+      if (existing) admin.data.places.splice(admin.data.places.indexOf(existing), 1, place);
+      else admin.data.places.unshift(place);
       renderOrder();
-      saveDraft(`「${place.name}」已加入第 1 位。下載 JSON 並更新 GitHub 後才會公開。`);
-      event.currentTarget.reset();
-      if (admin.pin) { admin.pin.remove(); admin.pin = null; }
+      renderEditChoices();
+      saveDraft(existing ? `「${place.name}」的修改已暫存。下載 JSON 並更新 GitHub 後才會公開。` : `「${place.name}」已加入第 1 位。下載 JSON 並更新 GitHub 後才會公開。`);
+      resetForm();
       $("#place-form [name=name]").focus();
     } catch (error) { status(error.message, true); }
+  });
+  $("#edit-place").addEventListener("change", (event) => loadPlaceForEdit(event.target.value));
+  $("#cancel-edit").addEventListener("click", () => {
+    resetForm();
+    status("已切換為新增店家。未儲存的修改不會套用。");
   });
   $("#place-form [name=weekendClosed]").addEventListener("change", (event) => {
     const weekend = $("#place-form [name=weekend]");
@@ -232,6 +292,8 @@ function bindEvents() {
     try {
       admin.data = validateData(JSON.parse(await file.text()));
       renderOrder();
+      resetForm();
+      renderEditChoices();
       saveDraft(`已匯入「${file.name}」，目前 ${admin.data.places.length} 個地點。`);
     } catch (error) { status(`匯入失敗：${error.message}`, true); }
     event.target.value = "";
@@ -244,6 +306,8 @@ function bindEvents() {
       admin.data = validateData(await response.json());
       localStorage.removeItem(DRAFT_KEY);
       renderOrder();
+      resetForm();
+      renderEditChoices();
       updateSummary(false);
       status("已重新載入目前公開資料。");
     } catch (error) { status(`無法重新載入：${error.message}`, true); }
@@ -263,6 +327,7 @@ async function start() {
     } catch { status("瀏覽器草稿格式有誤，已改用公開資料；你仍可匯入有效的 JSON。", true); }
     admin.data = draft || published;
     renderOrder();
+    renderEditChoices();
     updateSummary(Boolean(draft));
     if (draft) status("已還原這個瀏覽器保存的草稿。需要最新公開資料時，請按「重新載入公開資料」。");
     initPicker();

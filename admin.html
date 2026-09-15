@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="./styles.css?v=20260913-5" />
-    <link rel="stylesheet" href="./admin.css?v=20260913-5" />
+    <link rel="stylesheet" href="./styles.css?v=20260915-1" />
+    <link rel="stylesheet" href="./admin.css?v=20260915-1" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-    <script src="./admin.js?v=20260913-5" defer></script>
+    <script src="./admin.js?v=20260915-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#add-place">跳至新增店家</a>
@@ -23,13 +23,14 @@
         <a class="admin-back" href="./">← 返回地圖</a>
       </header>
       <main class="admin-main">
-        <div class="admin-heading"><p class="eyebrow"><span class="eyebrow-line"></span> CURATE THE NEIGHBORHOOD</p><h1>店家資料管理<span>.</span></h1><p>新增地點、調整首頁順序，完成後匯出資料檔。修改只會暫存在這個瀏覽器，管理者更新 GitHub 專案後才會公開。</p></div>
+        <div class="admin-heading"><p class="eyebrow"><span class="eyebrow-line"></span> CURATE THE NEIGHBORHOOD</p><h1>店家資料管理<span>.</span></h1><p>新增、修改地點或調整首頁順序，完成後匯出資料檔。修改只會暫存在這個瀏覽器，管理者更新 GitHub 專案後才會公開。</p></div>
         <div class="admin-toolbar"><div><strong id="admin-count">讀取店家中…</strong><span id="draft-label">目前以公開資料為基礎</span></div><div class="admin-toolbar-actions"><label class="import-button" for="import-file">匯入 JSON <input id="import-file" type="file" accept=".json,application/json" /></label><button id="reset-draft" type="button" class="text-button" hidden>重新載入公開資料</button></div></div>
         <p id="admin-status" class="admin-status" role="status" aria-live="polite"></p>
 
         <div class="admin-layout">
           <section id="add-place" class="admin-panel" aria-labelledby="add-title">
-            <div class="panel-title"><span class="panel-number">01</span><div><p>ADD A PLACE</p><h2 id="add-title">新增店家</h2></div></div>
+            <div class="panel-title"><span class="panel-number">01</span><div><p id="form-kicker">ADD A PLACE</p><h2 id="add-title">新增店家</h2></div></div>
+            <div class="edit-picker"><label for="edit-place">修改既有店家 <select id="edit-place"><option value="">選擇一間店家以載入資料</option></select></label><button id="cancel-edit" class="text-button" type="button" hidden>改為新增店家</button></div>
             <form id="place-form">
               <div class="field-grid"><label>店名（必填）<input name="name" required maxlength="80" placeholder="例如：巷口好食堂" /></label><label>類別（必填）<select name="category" required><option value="健康餐">健康餐</option><option value="日式">日式</option><option value="中式">中式</option><option value="異國">異國</option><option value="咖啡">咖啡</option><option value="午休">午休</option></select></label></div>
               <label>地址（必填）<input name="address" required maxlength="160" placeholder="台北市…" /></label>
@@ -46,7 +47,7 @@
               <div id="picker-map" aria-label="點選新店所在位置的地圖"></div><p id="picker-fallback" class="picker-fallback" hidden>地圖暫時無法載入，可直接輸入座標。</p>
               <div class="field-grid"><label>緯度 <input name="latitude" type="number" min="-90" max="90" step="any" placeholder="25.05…" /></label><label>經度 <input name="longitude" type="number" min="-180" max="180" step="any" placeholder="121.54…" /></label></div>
               <label class="check-row"><input name="coordinatesApproximate" type="checkbox" checked /> 圖釘為示意位置，尚未精確核對</label>
-              <button class="admin-primary" type="submit">加入店家與排序清單 →</button>
+              <button id="form-submit" class="admin-primary" type="submit">加入店家與排序清單 →</button>
             </form>
           </section>
 
