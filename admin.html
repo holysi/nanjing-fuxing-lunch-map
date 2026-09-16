@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="./styles.css?v=20260916-2" />
-    <link rel="stylesheet" href="./admin.css?v=20260916-2" />
+    <link rel="stylesheet" href="./styles.css?v=20260916-3" />
+    <link rel="stylesheet" href="./admin.css?v=20260916-3" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-    <script src="./admin.js?v=20260916-2" defer></script>
+    <script src="./admin.js?v=20260916-3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#add-place">跳至新增店家</a>
@@ -42,7 +42,8 @@
               <div class="field-grid"><label>最低價格 NT$ <input name="priceMin" type="number" min="0" max="100000" step="1" placeholder="未知可留白" /></label><label>最高價格 NT$ <input name="priceMax" type="number" min="0" max="100000" step="1" placeholder="未知可留白" /></label></div>
               <label>價格說明 <input name="priceNote" maxlength="160" placeholder="例如：部分主餐價格，請以現場為準" /></label>
               <label>資訊來源網址 <input name="sourceUrl" type="url" placeholder="https://…（若有公開來源）" /></label>
-              <label>照片路徑或網址 <input name="photo" placeholder="例如：./images/my-lunch.jpg；須有使用授權" /></label>
+              <label>店面封面照片路徑或網址 <input name="coverPhoto" placeholder="例如：./images/storefront.jpg；用店面外觀方便辨識" /></label>
+              <label>餐點／價格參考圖片 <textarea name="pricePhotos" rows="2" placeholder="每行一張圖片路徑或網址，例如：./images/menu.jpg&#10;會顯示在詳情的價格區塊"></textarea></label>
               <div class="picker-heading"><strong>在地圖選位置 <span>可選填</span></strong><p>點一下店面位置，或手動輸入經緯度。未定位的店家仍會出現在列表，但不顯示圖釘。</p></div>
               <div id="picker-map" aria-label="點選新店所在位置的地圖"></div><p id="picker-fallback" class="picker-fallback" hidden>地圖暫時無法載入，可直接輸入座標。</p>
               <div class="field-grid"><label>緯度 <input name="latitude" type="number" min="-90" max="90" step="any" placeholder="25.05…" /></label><label>經度 <input name="longitude" type="number" min="-180" max="180" step="any" placeholder="121.54…" /></label></div>

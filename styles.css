@@ -13,4 +13,6 @@
 .map-note{bottom:40px}.leaflet-control-scale-line{background:#fffdf7e8;border-color:#506858;color:#425e4c;font-size:11px;font-weight:700}
 .manage-link{font-size:12px;font-weight:800;color:#466e55;text-decoration:none;padding:9px 12px;border-radius:20px;background:#eef4ea;white-space:nowrap}.manage-link:hover{background:#dbeadc}
 .draft-notice{background:#fff3d8;color:#9a6c35;border-radius:12px;padding:5px 8px;font-size:10px;font-weight:800}
+.price-photos{margin:0 0 20px}.price-photos h3{font-size:13px;color:#455649;margin:0 0 9px}.price-photos>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.price-photos a{display:block;aspect-ratio:1;border-radius:8px;overflow:hidden;background:#edf1e9}.price-photos img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:470px){.price-photos>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.header-right{gap:5px}.manage-link{font-size:10px;padding:7px 8px}.location-pill{display:none}}

@@ -1,5 +1,5 @@
 const DRAFT_KEY = "nanjing-fuxing-places-draft-v1";
-const DATA_URL = "./data/places.json?v=20260916-2";
+const DATA_URL = "./data/places.json?v=20260916-3";
 const admin = { data: null, map: null, pin: null, dragFrom: null, editingId: null };
 const $ = (selector) => document.querySelector(selector);
 
@@ -78,6 +78,14 @@ function makeId() {
   return id;
 }
 
+function imagePaths(value) {
+  return String(value ?? "").split(/[\n,;]/).map((path) => path.trim()).filter(Boolean);
+}
+
+function isImagePath(value) {
+  return /^(https?:\/\/|\.\/images\/)/i.test(value);
+}
+
 function placeFromForm(form, existing = null) {
   const value = (name) => String(form.get(name) ?? "").trim();
   const name = value("name");
@@ -100,8 +108,10 @@ function placeFromForm(form, existing = null) {
 
   const sourceUrl = value("sourceUrl");
   if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) throw new Error("資訊來源請填入 http 或 https 網址。");
-  const photo = value("photo");
-  if (photo && !/^(https?:\/\/|\.\/images\/)/i.test(photo)) throw new Error("照片請填入 http(s) 網址或 ./images/ 路徑。");
+  const coverPhoto = value("coverPhoto");
+  const pricePhotos = imagePaths(form.get("pricePhotos"));
+  if (coverPhoto && !isImagePath(coverPhoto)) throw new Error("店面封面請填入 http(s) 網址或 ./images/ 路徑。");
+  if (pricePhotos.some((photo) => !isImagePath(photo))) throw new Error("每張餐點／價格圖片都請填入 http(s) 網址或 ./images/ 路徑。");
 
   const weekendClosed = form.has("weekendClosed");
   const place = {
@@ -112,8 +122,10 @@ function placeFromForm(form, existing = null) {
     coordinatesApproximate: form.has("coordinatesApproximate"),
     hours: { weekday: value("weekday") || null, weekend: weekendClosed ? "週六、日休" : value("weekend") || null },
     price: min == null ? null : { min, max, note: value("priceNote") || "請以店家現場為準" },
-    photos: photo ? [photo] : [], sourceUrl: sourceUrl || null, verifiedAt: todayInTaipei()
+    photos: existing?.photos || [], sourceUrl: sourceUrl || null, verifiedAt: todayInTaipei()
   };
+  if (coverPhoto) place.coverPhoto = coverPhoto; else delete place.coverPhoto;
+  if (pricePhotos.length) place.pricePhotos = pricePhotos; else delete place.pricePhotos;
   if (value("peerNote")) place.peerNote = value("peerNote"); else delete place.peerNote;
   if (weekendClosed) place.closedPeriods = ["weekend"]; else delete place.closedPeriods;
   return place;
@@ -152,7 +164,8 @@ function loadPlaceForEdit(id) {
   form.elements.priceMax.value = place.price?.max ?? "";
   form.elements.priceNote.value = place.price?.note || "";
   form.elements.sourceUrl.value = place.sourceUrl || "";
-  form.elements.photo.value = place.photos?.[0] || "";
+  form.elements.coverPhoto.value = place.coverPhoto || place.photos?.[0] || "";
+  form.elements.pricePhotos.value = (place.pricePhotos || []).join("\n");
   form.elements.latitude.value = place.coordinates?.[0] ?? "";
   form.elements.longitude.value = place.coordinates?.[1] ?? "";
   form.elements.coordinatesApproximate.checked = Boolean(place.coordinatesApproximate);

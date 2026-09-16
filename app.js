@@ -21,7 +21,7 @@ function localDraft(publishedUpdatedAt) {
   } catch { return null; }
 }
 function photoMarkup(place, className) {
-  const photo = place.photos?.[0];
+  const photo = String(place.coverPhoto || place.photos?.[0] || "").split(/[;,\n]/)[0].trim();
   const src = photo && safeUrl(photo);
   return `<div class="${className} category-${categoryClass[place.category] || "health"}"><span aria-hidden="true">${categoryEmoji[place.category] || "🍽️"}</span>${src ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(place.name)}照片" loading="lazy" onerror="this.remove()">` : ""}</div>`;
 }
@@ -36,6 +36,16 @@ function hoursLabel(place, period) { return place.hours?.[period] || "營業時�
 function navigLink(place) {
   const query = encodeURIComponent(`${place.name} ${place.address}`);
   return `https://www.google.com/maps/dir/?api=1&destination=${query}&travelmode=walking`;
+}
+function streetViewLink(place) {
+  const [latitude, longitude] = place.coordinates || [];
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${latitude},${longitude}`;
+}
+function pricePhotosMarkup(place) {
+  const photos = (place.pricePhotos || []).map((photo) => safeUrl(photo)).filter(Boolean);
+  if (!photos.length) return "";
+  return `<section class="price-photos"><h3>餐點與價格參考</h3><div>${photos.map((photo, index) => `<a href="${escapeHtml(photo)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(photo)}" alt="${escapeHtml(place.name)}餐點或價格參考圖 ${index + 1}" loading="lazy" /></a>`).join("")}</div></section>`;
 }
 function matchesPrice(place, filter) {
   if (filter === "all") return true;
@@ -103,8 +113,9 @@ function openDetail(id, updateHash = true) {
   state.activeId = id;
   const kind = categoryClass[place.category] || "health";
   const source = safeUrl(place.sourceUrl);
+  const streetView = streetViewLink(place);
   const priceNote = place.price?.note ? `（${escapeHtml(place.price.note)}）` : "";
-  $("#detail-content").innerHTML = `<button class="dialog-close" type="button" aria-label="關閉詳情">×</button>${photoMarkup(place,"detail-visual")}<div class="detail-inner"><span class="category-tag ${kind}">${escapeHtml(place.category)}</span><h2 id="detail-title">${escapeHtml(place.name)}</h2><p class="detail-description">${escapeHtml(place.description || place.summary)}</p>${place.peerNote ? `<div class="peer-note"><strong>同學分享</strong><p>${escapeHtml(place.peerNote)}</p></div>` : ""}<div class="detail-facts"><div class="detail-fact"><small>平日營業</small><strong>${escapeHtml(hoursLabel(place,"weekday"))}</strong></div><div class="detail-fact"><small>假日營業</small><strong>${escapeHtml(hoursLabel(place,"weekend"))}</strong></div><div class="detail-fact"><small>價格</small><strong>${escapeHtml(priceLabel(place))} ${priceNote}</strong></div><div class="detail-fact"><small>地址</small><strong>${escapeHtml(place.address)}</strong></div></div><div class="detail-actions"><a class="primary-action" href="${escapeHtml(navigLink(place))}" target="_blank" rel="noopener noreferrer">在 Google 地圖導航 ↗</a>${source ? `<a class="secondary-action" href="${escapeHtml(source)}" target="_blank" rel="noopener noreferrer">資訊來源</a>` : ""}</div><div class="detail-review"><strong>評論與照片分享　即將開放</strong><p>第二階段將提供 LINE 登入後撰寫評論與上傳照片。</p></div><p class="source-line">資料查核：${escapeHtml(place.verifiedAt || "待確認")}。店家資訊可能異動，出發前請再次確認。${place.coordinatesApproximate ? "圖釘為示意位置。" : ""}</p></div>`;
+  $("#detail-content").innerHTML = `<button class="dialog-close" type="button" aria-label="關閉詳情">×</button>${photoMarkup(place,"detail-visual")}<div class="detail-inner"><span class="category-tag ${kind}">${escapeHtml(place.category)}</span><h2 id="detail-title">${escapeHtml(place.name)}</h2><p class="detail-description">${escapeHtml(place.description || place.summary)}</p>${place.peerNote ? `<div class="peer-note"><strong>同學分享</strong><p>${escapeHtml(place.peerNote)}</p></div>` : ""}<div class="detail-facts"><div class="detail-fact"><small>平日營業</small><strong>${escapeHtml(hoursLabel(place,"weekday"))}</strong></div><div class="detail-fact"><small>假日營業</small><strong>${escapeHtml(hoursLabel(place,"weekend"))}</strong></div><div class="detail-fact"><small>價格</small><strong>${escapeHtml(priceLabel(place))} ${priceNote}</strong></div><div class="detail-fact"><small>地址</small><strong>${escapeHtml(place.address)}</strong></div></div>${pricePhotosMarkup(place)}<div class="detail-actions"><a class="primary-action" href="${escapeHtml(navigLink(place))}" target="_blank" rel="noopener noreferrer">在 Google 地圖導航 ↗</a>${streetView ? `<a class="secondary-action" href="${escapeHtml(streetView)}" target="_blank" rel="noopener noreferrer">開啟街景 ↗</a>` : ""}${source ? `<a class="secondary-action" href="${escapeHtml(source)}" target="_blank" rel="noopener noreferrer">資訊來源</a>` : ""}</div><div class="detail-review"><strong>評論與照片分享　即將開放</strong><p>第二階段將提供 LINE 登入後撰寫評論與上傳照片。</p></div><p class="source-line">資料查核：${escapeHtml(place.verifiedAt || "待確認")}。店家資訊可能異動，出發前請再次確認。${place.coordinatesApproximate ? "圖釘為示意位置。" : ""}</p></div>`;
   $("#detail-content .dialog-close").addEventListener("click", () => $("#detail-dialog").close());
   if (!$("#detail-dialog").open) $("#detail-dialog").showModal();
   if (updateHash) history.replaceState(null, "", `#place=${encodeURIComponent(id)}`);
@@ -134,7 +145,7 @@ function bindEvents() {
 async function start() {
   bindEvents();
   try {
-    const response = await fetch("./data/places.json?v=20260916-2");
+    const response = await fetch("./data/places.json?v=20260916-3");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     const draft = localDraft(data.updatedAt);
