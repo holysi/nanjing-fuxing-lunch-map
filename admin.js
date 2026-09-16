@@ -1,5 +1,5 @@
 const DRAFT_KEY = "nanjing-fuxing-places-draft-v1";
-const DATA_URL = "./data/places.json?v=20260915-1";
+const DATA_URL = "./data/places.json?v=20260916-2";
 const admin = { data: null, map: null, pin: null, dragFrom: null, editingId: null };
 const $ = (selector) => document.querySelector(selector);
 
@@ -39,6 +39,7 @@ function exportText() {
 
 function saveDraft(message) {
   try {
+    admin.data.updatedAt = todayInTaipei();
     localStorage.setItem(DRAFT_KEY, JSON.stringify(admin.data));
     status(message || "修改已暫存於此瀏覽器；下載 JSON 後才能交給管理者發布。");
   } catch {

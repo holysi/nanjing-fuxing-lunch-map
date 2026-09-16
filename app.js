@@ -1,6 +1,7 @@
 const state = { places: [], filtered: [], map: null, cluster: null, markers: [], activeId: null, view: "map" };
 const STATION = [25.052, 121.544];
 const NEARBY_ZOOM = 18;
+const DRAFT_KEY = "nanjing-fuxing-places-draft-v1";
 const $ = (selector) => document.querySelector(selector);
 const categoryClass = { "健康餐": "health", "日式": "japanese", "中式": "chinese", "異國": "international", "咖啡": "coffee", "午休": "rest" };
 const categoryEmoji = { "健康餐": "🥗", "日式": "🍱", "中式": "🥟", "異國": "🍛", "咖啡": "☕", "午休": "🪑" };
@@ -10,6 +11,14 @@ function escapeHtml(value) {
 }
 function safeUrl(value) {
   try { const url = new URL(value, location.href); return ["https:", "http:"].includes(url.protocol) ? url.href : null; } catch { return null; }
+}
+function localDraft(publishedUpdatedAt) {
+  try {
+    const draft = JSON.parse(localStorage.getItem(DRAFT_KEY));
+    if (!Array.isArray(draft?.places) || !draft.places.every((place) => place?.id && place?.name && place?.address)) return null;
+    if (!draft.updatedAt || (publishedUpdatedAt && draft.updatedAt < publishedUpdatedAt)) return null;
+    return draft.places;
+  } catch { return null; }
 }
 function photoMarkup(place, className) {
   const photo = place.photos?.[0];
@@ -66,7 +75,7 @@ function initMap() {
   state.map = L.map("map", { scrollWheelZoom: false }).setView(STATION, NEARBY_ZOOM);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>' }).addTo(state.map);
   L.control.scale({ metric: true, imperial: false, maxWidth: 120 }).addTo(state.map);
-  if (L.markerClusterGroup) state.cluster = L.markerClusterGroup({ maxClusterRadius: 43, spiderfyOnMaxZoom: true, iconCreateFunction: (cluster) => L.divIcon({ html: `<span>${cluster.getChildCount()}</span>`, className: "place-cluster", iconSize: [42, 42] }) }).addTo(state.map);
+  if (L.markerClusterGroup) state.cluster = L.markerClusterGroup({ maxClusterRadius: 43, disableClusteringAtZoom: NEARBY_ZOOM, spiderfyOnMaxZoom: true, iconCreateFunction: (cluster) => L.divIcon({ html: `<span>${cluster.getChildCount()}</span>`, className: "place-cluster", iconSize: [42, 42] }) }).addTo(state.map);
   const stationIcon = L.divIcon({ html: '<div class="station-pin">捷</div>', className: "", iconSize: [35,35], iconAnchor: [17,17] });
   L.marker(STATION, { icon: stationIcon, zIndexOffset: -100 }).addTo(state.map).bindPopup("捷運南京復興站 G16・BR11");
   renderMarkers();
@@ -125,10 +134,12 @@ function bindEvents() {
 async function start() {
   bindEvents();
   try {
-    const response = await fetch("./data/places.json?v=20260913-5");
+    const response = await fetch("./data/places.json?v=20260916-2");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    state.places = Array.isArray(data.places) ? data.places : [];
+    const draft = localDraft(data.updatedAt);
+    state.places = draft || (Array.isArray(data.places) ? data.places : []);
+    $("#draft-notice").hidden = !draft;
     $("#hero-count").textContent = `已收錄 ${state.places.length} 個午間去處`;
     applyFilters();
     initMap();

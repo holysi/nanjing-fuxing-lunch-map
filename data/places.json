@@ -1,6 +1,64 @@
 {
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-16",
   "places": [
+    {
+      "id": "ririsheng-nanjing",
+      "name": "日日升元気ご膳・南京店",
+      "category": "健康餐",
+      "summary": "輕食餐盒與健康餐，適合想吃得清爽的午餐。",
+      "description": "遼寧街155巷的餐盒店。外送平台餐盒價格可能與現場不同。",
+      "peerNote": "健康餐好吃。",
+      "address": "台北市中山區遼寧街155巷41號",
+      "coordinates": [
+        25.0533,
+        121.5427
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "10:00–19:30",
+        "weekend": "10:00–19:30"
+      },
+      "hoursAreDelivery": true,
+      "price": {
+        "min": 196,
+        "max": 300,
+        "note": "外送平台部分餐盒價格，門市可能不同"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw/store/%E6%97%A5%E6%97%A5%E5%8D%87%E5%85%83%E6%B0%97%E3%81%93%E8%86%B3-x-%E8%BC%95%E9%A3%9F%E9%A4%90%E7%9B%92-%E5%8D%97%E4%BA%AC%E5%BA%97/1raHpXcMUb28zS78B74slA",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "id": "place-mu3mem74-gj27",
+      "name": "順興自助餐",
+      "category": "中式",
+      "summary": "老闆親切",
+      "description": "老闆親切",
+      "address": "台北市南京東路三段223巷26號",
+      "coordinates": [
+        25.0541084,
+        121.5438474
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:00-140:0",
+        "weekend": "週六、日休"
+      },
+      "price": {
+        "min": 95,
+        "max": null,
+        "note": "控肉筍絲豆包咖哩小碗飯95元"
+      },
+      "photos": [
+        "./images/10650_0.jpg;./images/10649_0.jpg"
+      ],
+      "sourceUrl": null,
+      "verifiedAt": "2026-09-16",
+      "peerNote": "肉略硬小、吃粗飽",
+      "closedPeriods": [
+        "weekend"
+      ]
+    },
     {
       "id": "healthy-diet-nanjing",
       "name": "常常好食・南京店",
@@ -8,9 +66,15 @@
       "summary": "以地中海機能餐與蔬食為主，適合想吃得清爽的午休日。",
       "description": "提供地中海機能餐、輕食與餐盒，可內用或外帶。南京店鄰近捷運 6 號出口。",
       "address": "台北市松山區南京東路三段285號",
-      "coordinates": [25.0520, 121.5452],
+      "coordinates": [
+        25.052,
+        121.5452
+      ],
       "coordinatesApproximate": true,
-      "hours": { "weekday": "11:00–19:30", "weekend": null },
+      "hours": {
+        "weekday": "11:00–19:30",
+        "weekend": null
+      },
       "price": null,
       "photos": [],
       "sourceUrl": "https://www.healthydiet.com.tw/class",
@@ -23,10 +87,20 @@
       "summary": "想吃一碗熱騰騰的丼飯，這裡有牛丼、親子丼與咖哩選擇。",
       "description": "三商鮮五丼的南京店提供內用與外帶。品牌官網目前列有招牌牛丼等餐點；實際供應與售價以門市為準。",
       "address": "台北市中山區南京東路三段115號",
-      "coordinates": [25.0521, 121.5409],
+      "coordinates": [
+        25.0521,
+        121.5409
+      ],
       "coordinatesApproximate": true,
-      "hours": { "weekday": null, "weekend": null },
-      "price": { "min": 140, "max": 199, "note": "官網部分丼飯定價" },
+      "hours": {
+        "weekday": null,
+        "weekend": null
+      },
+      "price": {
+        "min": 140,
+        "max": 199,
+        "note": "官網部分丼飯定價"
+      },
       "photos": [],
       "sourceUrl": "https://donmono.com.tw/%E9%96%80%E5%B8%82%E8%B3%87%E8%A8%8A/",
       "menuUrl": "https://donmono.com.tw/%E7%BE%8E%E5%91%B3%E4%B8%BC%E9%A3%AF/",
@@ -39,9 +113,15 @@
       "summary": "以蔬食做出港點、川菜與中式熱炒，適合約同事一起吃。",
       "description": "主打蔬食茶餐廳料理，有港式點心與中式菜色。位於南京東路三段的二樓，聚餐前建議確認營業與訂位狀態。",
       "address": "台北市松山區南京東路三段275號2樓",
-      "coordinates": [25.0520, 121.5447],
+      "coordinates": [
+        25.052,
+        121.5447
+      ],
       "coordinatesApproximate": true,
-      "hours": { "weekday": "11:30–15:00", "weekend": "11:30–15:00" },
+      "hours": {
+        "weekday": "11:30–15:00",
+        "weekend": "11:30–15:00"
+      },
       "price": null,
       "photos": [],
       "sourceUrl": "https://vegemap.merit-times.com/restaurant_detail/%E4%B8%8D%E8%91%B7%E4%B8%BB%E7%BE%A9%E8%8C%B6%E9%A4%90%E5%BB%B3-%E5%8F%B0%E5%8C%97%E5%BA%97",
@@ -54,157 +134,433 @@
       "summary": "健康餐盒與蔬菜搭配，午餐想吃得有飽足感可以看看。",
       "description": "從健康餐盒起家的店家，南京店位於敦化北路巷內。餐點與營業時間請以店家最新公告為準。",
       "address": "台北市松山區敦化北路4巷45號",
-      "coordinates": [25.0510, 121.5470],
+      "coordinates": [
+        25.051,
+        121.547
+      ],
       "coordinatesApproximate": true,
-      "hours": { "weekday": null, "weekend": null },
+      "hours": {
+        "weekday": null,
+        "weekend": null
+      },
       "price": null,
       "photos": [],
       "sourceUrl": "https://www.facebook.com/MuscleBeachtw/?locale=zh_TW",
       "verifiedAt": "2026-09-13"
     },
     {
-      "id": "qingcheng-hainan-chicken", "name": "慶城海南雞飯", "category": "中式",
-      "summary": "慶城街的人氣海南雞飯，午餐尖峰可能需要排隊。", "description": "位於慶城街16巷的海南雞飯。營業與售價以店面當日公告為準。",
-      "peerNote": "排爆、小貴。可以吃吃看，一陣子會想吃一次。", "address": "台北市松山區慶城街16巷8號",
-      "coordinates": [25.0527917, 121.5456412], "coordinatesApproximate": false,
-      "hours": { "weekday": "11:00–15:00", "weekend": "週六、日休" }, "closedPeriods": ["weekend"], "price": { "min": 120, "max": 160, "note": "公開頁面部分主餐價格，請以現場為準" }, "photos": [],
-      "sourceUrl": "https://lordcat.net/archives/1895", "verifiedAt": "2026-09-13"
+      "id": "qingcheng-hainan-chicken",
+      "name": "慶城海南雞飯",
+      "category": "中式",
+      "summary": "慶城街的人氣海南雞飯，午餐尖峰可能需要排隊。",
+      "description": "位於慶城街16巷的海南雞飯。營業與售價以店面當日公告為準。",
+      "peerNote": "排爆、小貴。可以吃吃看，一陣子會想吃一次。",
+      "address": "台北市松山區慶城街16巷8號",
+      "coordinates": [
+        25.0527917,
+        121.5456412
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "11:00–15:00",
+        "weekend": "週六、日休"
+      },
+      "closedPeriods": [
+        "weekend"
+      ],
+      "price": {
+        "min": 120,
+        "max": 160,
+        "note": "公開頁面部分主餐價格，請以現場為準"
+      },
+      "photos": [],
+      "sourceUrl": "https://lordcat.net/archives/1895",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "indian-flavors-qingcheng", "name": "印渡風情・慶城店", "category": "異國",
-      "summary": "印度料理與商業午餐，適合想換口味的中午。", "description": "慶城街16巷的印度餐廳，供應咖哩、烤餅與商業午餐。",
-      "peerNote": "商業午餐，餅好吃。", "address": "台北市松山區慶城街16巷6號",
-      "coordinates": [25.0528, 121.5456], "coordinatesApproximate": true,
-      "hours": { "weekday": "11:30–14:30", "weekend": "11:30–14:30" }, "price": null, "photos": [],
-      "sourceUrl": "https://funpass.travel.taipei/store/info/alvE", "verifiedAt": "2026-09-13"
+      "id": "indian-flavors-qingcheng",
+      "name": "印渡風情・慶城店",
+      "category": "異國",
+      "summary": "印度料理與商業午餐，適合想換口味的中午。",
+      "description": "慶城街16巷的印度餐廳，供應咖哩、烤餅與商業午餐。",
+      "peerNote": "商業午餐，餅好吃。",
+      "address": "台北市松山區慶城街16巷6號",
+      "coordinates": [
+        25.0528,
+        121.5456
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:30–14:30",
+        "weekend": "11:30–14:30"
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://funpass.travel.taipei/store/info/alvE",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "loobah-restaurant", "name": "滷肉飯店 LÓOBAH", "category": "中式",
-      "summary": "滷肉飯與台式家常餐點，離南京復興站不遠。", "description": "位於南京東路三段，供應滷肉飯、乾麵等台式餐點。",
-      "peerNote": "乾淨整齊，乾麵、辣椒好吃。", "address": "台北市松山區南京東路三段261號1樓",
-      "coordinates": [25.0520, 121.5439], "coordinatesApproximate": true,
-      "hours": { "weekday": "11:30–20:00", "weekend": "週六 11:30–20:00；週日休" }, "price": { "min": 60, "max": 245, "note": "外送平台部分品項，非固定一餐價格" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw-en/store/%E6%BB%B7%E8%82%89%E9%A3%AF%E5%BA%97-loobah-restaurant/Lr7o6q-1UbGDoNbBsY7Ntg", "verifiedAt": "2026-09-13"
+      "id": "loobah-restaurant",
+      "name": "滷肉飯店 LÓOBAH",
+      "category": "中式",
+      "summary": "滷肉飯與台式家常餐點，離南京復興站不遠。",
+      "description": "位於南京東路三段，供應滷肉飯、乾麵等台式餐點。",
+      "peerNote": "乾淨整齊，乾麵、辣椒好吃。",
+      "address": "台北市松山區南京東路三段261號1樓",
+      "coordinates": [
+        25.052,
+        121.5439
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:30–20:00",
+        "weekend": "週六 11:30–20:00；週日休"
+      },
+      "price": {
+        "min": 60,
+        "max": 245,
+        "note": "外送平台部分品項，非固定一餐價格"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw-en/store/%E6%BB%B7%E8%82%89%E9%A3%AF%E5%BA%97-loobah-restaurant/Lr7o6q-1UbGDoNbBsY7Ntg",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "ding-mama-dumplings", "name": "丁媽媽水餃", "category": "中式",
-      "summary": "巷內的水餃與麵食，適合簡單吃一餐。", "description": "位於南京東路三段223巷，供應水餃與麵食。營業日以店家現場公告為準。",
-      "peerNote": "水準之上。", "address": "台北市中山區南京東路三段223巷20號",
-      "coordinates": [25.0512, 121.5438], "coordinatesApproximate": true,
-      "hours": { "weekday": "11:00–15:00", "weekend": "週六 11:00–15:00；週日休" }, "price": null, "photos": [],
-      "sourceUrl": "https://alinalife.tw/dingmama-dumpling/", "verifiedAt": "2026-09-13"
+      "id": "ding-mama-dumplings",
+      "name": "丁媽媽水餃",
+      "category": "中式",
+      "summary": "巷內的水餃與麵食，適合簡單吃一餐。",
+      "description": "位於南京東路三段223巷，供應水餃與麵食。營業日以店家現場公告為準。",
+      "peerNote": "水準之上。",
+      "address": "台北市中山區南京東路三段223巷20號",
+      "coordinates": [
+        25.0512,
+        121.5438
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:00–15:00",
+        "weekend": "週六 11:00–15:00；週日休"
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://alinalife.tw/dingmama-dumpling/",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "liyuan-soup-dumplings", "name": "犂園湯包館", "category": "中式",
-      "summary": "湯包與中式點心，適合多人一起點幾樣。", "description": "南京東路三段256巷的湯包館。週一營業資訊在公開來源之間不一致，建議先確認。",
-      "peerNote": "水準之上。", "address": "台北市松山區南京東路三段256巷24號",
-      "coordinates": [25.0502634, 121.5447930], "coordinatesApproximate": false,
-      "hours": { "weekday": "週二至五 11:30–14:30；週一待確認", "weekend": "11:30–14:30" }, "price": null, "photos": [],
-      "sourceUrl": "https://supertaste.tvbs.com.tw/infocard/12815", "verifiedAt": "2026-09-13"
+      "id": "liyuan-soup-dumplings",
+      "name": "犂園湯包館",
+      "category": "中式",
+      "summary": "湯包與中式點心，適合多人一起點幾樣。",
+      "description": "南京東路三段256巷的湯包館。週一營業資訊在公開來源之間不一致，建議先確認。",
+      "peerNote": "水準之上。",
+      "address": "台北市松山區南京東路三段256巷24號",
+      "coordinates": [
+        25.0502634,
+        121.544793
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "週二至五 11:30–14:30；週一待確認",
+        "weekend": "11:30–14:30"
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://supertaste.tvbs.com.tw/infocard/12815",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "ponpon-noodles-nanjing", "name": "碰麵麵食館・南京店", "category": "中式",
-      "summary": "巷裡的中式麵點與小菜，平日午餐可順路試試。", "description": "位於南京東路三段256巷28弄，供應麵食與小菜。",
-      "peerNote": "小鼎泰豐。", "address": "台北市松山區南京東路三段256巷28弄1號",
-      "coordinates": [25.0504, 121.5448], "coordinatesApproximate": true,
-      "hours": { "weekday": "11:00–15:00", "weekend": "週六、日休" }, "closedPeriods": ["weekend"], "price": null, "photos": [],
-      "sourceUrl": "https://achingfoodie.tw/ponpon/", "verifiedAt": "2026-09-13"
+      "id": "ponpon-noodles-nanjing",
+      "name": "碰麵麵食館・南京店",
+      "category": "中式",
+      "summary": "巷裡的中式麵點與小菜，平日午餐可順路試試。",
+      "description": "位於南京東路三段256巷28弄，供應麵食與小菜。",
+      "peerNote": "小鼎泰豐。",
+      "address": "台北市松山區南京東路三段256巷28弄1號",
+      "coordinates": [
+        25.0504,
+        121.5448
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:00–15:00",
+        "weekend": "週六、日休"
+      },
+      "closedPeriods": [
+        "weekend"
+      ],
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://achingfoodie.tw/ponpon/",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "tada-sushi", "name": "多田壽司屋", "category": "日式",
-      "summary": "巷弄裡的日式壽司，午餐想吃日式可留意。", "description": "位於南京東路三段216巷的壽司屋。",
-      "peerNote": "就不錯的日式。", "address": "台北市中山區南京東路三段216巷6號",
-      "coordinates": [25.0513076, 121.5433606], "coordinatesApproximate": false,
-      "hours": { "weekday": "11:00–14:30", "weekend": "週六 11:00–14:30；週日休" }, "price":{ "min": 120, "max": 450, "note": "外帶比較便宜" }, "photos": [],
-      "sourceUrl": "https://www.fonfood.com/store/251778", "verifiedAt": "2026-09-13"
+      "id": "tada-sushi",
+      "name": "多田壽司屋",
+      "category": "日式",
+      "summary": "巷弄裡的日式壽司，午餐想吃日式可留意。",
+      "description": "位於南京東路三段216巷的壽司屋。",
+      "peerNote": "就不錯的日式。",
+      "address": "台北市中山區南京東路三段216巷6號",
+      "coordinates": [
+        25.0513076,
+        121.5433606
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "11:00–14:30",
+        "weekend": "週六 11:00–14:30；週日休"
+      },
+      "price": {
+        "min": 120,
+        "max": 450,
+        "note": "外帶比較便宜"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.fonfood.com/store/251778",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "cha-shui-tan-nanjing", "name": "香港茶水攤・南京店", "category": "中式",
-      "summary": "港式茶餐廳，想吃港式飯麵或點心時可選。", "description": "位於南京東路三段，提供港式茶餐廳料理。",
-      "peerNote": "就不錯的港式。", "address": "台北市中山區南京東路三段218號",
-      "coordinates": [25.0516511, 121.5435122], "coordinatesApproximate": false,
-      "hours": { "weekday": "11:00–22:30", "weekend": "11:00–22:30" }, "price": null, "photos": [],
-      "sourceUrl": "https://www.fonfood.com/store/4102899", "verifiedAt": "2026-09-13"
+      "id": "cha-shui-tan-nanjing",
+      "name": "香港茶水攤・南京店",
+      "category": "中式",
+      "summary": "港式茶餐廳，想吃港式飯麵或點心時可選。",
+      "description": "位於南京東路三段，提供港式茶餐廳料理。",
+      "peerNote": "就不錯的港式。",
+      "address": "台北市中山區南京東路三段218號",
+      "coordinates": [
+        25.0516511,
+        121.5435122
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "11:00–22:30",
+        "weekend": "11:00–22:30"
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.fonfood.com/store/4102899",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "lanfang-noodles", "name": "蘭芳麵食館", "category": "中式",
-      "summary": "花椒香氣的小麵與湯品，適合喜歡香麻口味的人。", "description": "遼寧街的中式麵食館；公開營業時間有差異，午餐出發前請確認。",
-      "peerNote": "小麵花椒很讚，豆腐湯很讚。", "address": "台北市中山區遼寧街95號",
-      "coordinates": [25.0500523, 121.5422349], "coordinatesApproximate": false,
-      "hours": { "weekday": "午餐有營業，時間待確認", "weekend": null }, "price": null, "photos": [],
-      "sourceUrl": "https://www.lanfang.tw/", "verifiedAt": "2026-09-13"
+      "id": "lanfang-noodles",
+      "name": "蘭芳麵食館",
+      "category": "中式",
+      "summary": "花椒香氣的小麵與湯品，適合喜歡香麻口味的人。",
+      "description": "遼寧街的中式麵食館；公開營業時間有差異，午餐出發前請確認。",
+      "peerNote": "小麵花椒很讚，豆腐湯很讚。",
+      "address": "台北市中山區遼寧街95號",
+      "coordinates": [
+        25.0500523,
+        121.5422349
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "午餐有營業，時間待確認",
+        "weekend": null
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.lanfang.tw/",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "bailixiang-clam-noodles", "name": "百里香蚌麵", "category": "中式",
-      "summary": "興安街的蚌麵與椒麻雞，適合午餐外帶。", "description": "位於興安街161-1號，供應蚌麵、椒麻雞等料理。",
-      "peerNote": "蚌麵不錯，椒麻雞神；同學覺得環境較不理想，建議外帶。", "address": "台北市松山區興安街161-1號",
-      "coordinates": [25.0561799, 121.5458157], "coordinatesApproximate": false,
-      "hours": { "weekday": "11:30–14:30", "weekend": "週六、日休" }, "closedPeriods": ["weekend"], "price": null, "photos": [],
-      "sourceUrl": "https://lordcat.net/archives/84141", "verifiedAt": "2026-09-13"
+      "id": "bailixiang-clam-noodles",
+      "name": "百里香蚌麵",
+      "category": "中式",
+      "summary": "興安街的蚌麵與椒麻雞，適合午餐外帶。",
+      "description": "位於興安街161-1號，供應蚌麵、椒麻雞等料理。",
+      "peerNote": "蚌麵不錯，椒麻雞神；同學覺得環境較不理想，建議外帶。",
+      "address": "台北市松山區興安街161-1號",
+      "coordinates": [
+        25.0561799,
+        121.5458157
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "11:30–14:30",
+        "weekend": "週六、日休"
+      },
+      "closedPeriods": [
+        "weekend"
+      ],
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://lordcat.net/archives/84141",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "jinchunfa-fubei", "name": "金春發牛肉店・復北店", "category": "中式",
-      "summary": "清燉牛肉湯與牛肉麵，午餐想喝熱湯時可試。", "description": "復興北路的金春發分店，店名為金春發牛肉店。",
-      "peerNote": "牛肉湯不錯。", "address": "台北市中山區復興北路202號1樓",
-      "coordinates": [25.0555515, 121.5438422], "coordinatesApproximate": false,
-      "hours": { "weekday": "11:30–15:00", "weekend": "11:30–15:00" }, "price": null, "photos": [],
-      "sourceUrl": "https://www.walkerland.com.tw/article/view/401658", "verifiedAt": "2026-09-13"
+      "id": "jinchunfa-fubei",
+      "name": "金春發牛肉店・復北店",
+      "category": "中式",
+      "summary": "清燉牛肉湯與牛肉麵，午餐想喝熱湯時可試。",
+      "description": "復興北路的金春發分店，店名為金春發牛肉店。",
+      "peerNote": "牛肉湯不錯。",
+      "address": "台北市中山區復興北路202號1樓",
+      "coordinates": [
+        25.0555515,
+        121.5438422
+      ],
+      "coordinatesApproximate": false,
+      "hours": {
+        "weekday": "11:30–15:00",
+        "weekend": "11:30–15:00"
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.walkerland.com.tw/article/view/401658",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "jinfu-pho-qingcheng", "name": "金福越式河粉・慶城店", "category": "異國",
-      "summary": "越式河粉與生春捲，想吃清爽口味時可試。", "description": "位於南京東路三段303巷，外送平台列有多款牛肉與雞絲河粉。現場營業時段可能不同。",
-      "peerNote": "新開的，生菜夾爆。", "address": "台北市松山區南京東路三段303巷8之1號1樓",
-      "coordinates": [25.0524, 121.5462], "coordinatesApproximate": true,
-      "hours": { "weekday": "外送 11:30–14:00；現場待確認", "weekend": "外送 11:30–14:00；現場待確認" }, "hoursAreDelivery": true, "price": { "min": 203, "max": 376, "note": "外送平台部分河粉價格，門市可能不同" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw-en/store/%E9%87%91%E7%A6%8F%E8%B6%8A%E5%BC%8F%E6%B2%B3%E7%B2%89-%E6%85%B6%E5%9F%8E%E5%BA%97/NZq4SNmBXAqM4MIvgmfOsQ", "verifiedAt": "2026-09-13"
+      "id": "jinfu-pho-qingcheng",
+      "name": "金福越式河粉・慶城店",
+      "category": "異國",
+      "summary": "越式河粉與生春捲，想吃清爽口味時可試。",
+      "description": "位於南京東路三段303巷，外送平台列有多款牛肉與雞絲河粉。現場營業時段可能不同。",
+      "peerNote": "新開的，生菜夾爆。",
+      "address": "台北市松山區南京東路三段303巷8之1號1樓",
+      "coordinates": [
+        25.0524,
+        121.5462
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "外送 11:30–14:00；現場待確認",
+        "weekend": "外送 11:30–14:00；現場待確認"
+      },
+      "hoursAreDelivery": true,
+      "price": {
+        "min": 203,
+        "max": 376,
+        "note": "外送平台部分河粉價格，門市可能不同"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw-en/store/%E9%87%91%E7%A6%8F%E8%B6%8A%E5%BC%8F%E6%B2%B3%E7%B2%89-%E6%85%B6%E5%9F%8E%E5%BA%97/NZq4SNmBXAqM4MIvgmfOsQ",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "one-ok-coffee", "name": "ONE OK COFFEE", "category": "咖啡",
-      "summary": "遼寧街的咖啡店，午餐後想喝杯特別的咖啡可繞過去。", "description": "小黃瓜美式是外送菜單可見的特色飲品。營業時間請向店家確認。",
-      "peerNote": "小黃瓜美式激推，喜歡特殊香氣的可以買。老闆很有型，偶爾有大狗。", "address": "台北市中山區遼寧街135號1樓",
-      "coordinates": [25.0521241, 121.5421176], "coordinatesApproximate": true,
-      "hours": { "weekday": null, "weekend": null }, "price": { "min": 108, "max": 108, "note": "外送平台小黃瓜美式價格，門市可能不同" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw-en/store/one-ok-coffee/WtHT77XRSiykQsFDgrISpA", "verifiedAt": "2026-09-13"
+      "id": "one-ok-coffee",
+      "name": "ONE OK COFFEE",
+      "category": "咖啡",
+      "summary": "遼寧街的咖啡店，午餐後想喝杯特別的咖啡可繞過去。",
+      "description": "小黃瓜美式是外送菜單可見的特色飲品。營業時間請向店家確認。",
+      "peerNote": "小黃瓜美式激推，喜歡特殊香氣的可以買。老闆很有型，偶爾有大狗。",
+      "address": "台北市中山區遼寧街135號1樓",
+      "coordinates": [
+        25.0521241,
+        121.5421176
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": null,
+        "weekend": null
+      },
+      "price": {
+        "min": 108,
+        "max": 108,
+        "note": "外送平台小黃瓜美式價格，門市可能不同"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw-en/store/one-ok-coffee/WtHT77XRSiykQsFDgrISpA",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "wilbeck-south-park", "name": "威爾貝克咖啡・南方公園店", "category": "咖啡",
-      "summary": "遼寧街巷內的咖啡店，適合午休時來杯咖啡。", "description": "依南京復興商圈位置，暫以南方公園店對應同學的推薦；若指其他分店請告知。",
-      "peerNote": "不錯。", "address": "台北市中山區遼寧街116巷4號",
-      "coordinates": [25.0512, 121.5425], "coordinatesApproximate": true,
-      "hours": { "weekday": "07:30–17:00", "weekend": "08:00–17:00" }, "price": { "min": 95, "max": 189, "note": "外送平台部分咖啡價格，門市可能不同" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw/store/%E5%A8%81%E7%88%BE%E8%B2%9D%E5%85%8B-%E5%8D%97%E6%96%B9%E5%85%AC%E5%9C%92%E5%BA%97/9YA1VKbpX2mW9IqMt_yM2Q", "verifiedAt": "2026-09-13"
+      "id": "wilbeck-south-park",
+      "name": "威爾貝克咖啡・南方公園店",
+      "category": "咖啡",
+      "summary": "遼寧街巷內的咖啡店，適合午休時來杯咖啡。",
+      "description": "依南京復興商圈位置，暫以南方公園店對應同學的推薦；若指其他分店請告知。",
+      "peerNote": "不錯。",
+      "address": "台北市中山區遼寧街116巷4號",
+      "coordinates": [
+        25.0512,
+        121.5425
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "07:30–17:00",
+        "weekend": "08:00–17:00"
+      },
+      "price": {
+        "min": 95,
+        "max": 189,
+        "note": "外送平台部分咖啡價格，門市可能不同"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw/store/%E5%A8%81%E7%88%BE%E8%B2%9D%E5%85%8B-%E5%8D%97%E6%96%B9%E5%85%AC%E5%9C%92%E5%BA%97/9YA1VKbpX2mW9IqMt_yM2Q",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "hueiyeh-relax-fuxing", "name": "輝葉放空站・台北復興北店", "category": "午休",
-      "summary": "午休想放鬆一下，這裡有按摩椅體驗。", "description": "位於復興北路193號的按摩椅體驗門市；非餐廳，收錄作為午間休息去處。",
-      "peerNote": "有按摩椅可以。", "address": "台北市松山區復興北路193號",
-      "coordinates": [25.0542, 121.5440], "coordinatesApproximate": true,
-      "hours": { "weekday": null, "weekend": null }, "price": null, "photos": [],
-      "sourceUrl": "https://www.hueiyeh.com.tw/news_detail/244", "verifiedAt": "2026-09-13"
+      "id": "hueiyeh-relax-fuxing",
+      "name": "輝葉放空站・台北復興北店",
+      "category": "午休",
+      "summary": "午休想放鬆一下，這裡有按摩椅體驗。",
+      "description": "位於復興北路193號的按摩椅體驗門市；非餐廳，收錄作為午間休息去處。",
+      "peerNote": "有按摩椅可以。",
+      "address": "台北市松山區復興北路193號",
+      "coordinates": [
+        25.0542,
+        121.544
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": null,
+        "weekend": null
+      },
+      "price": null,
+      "photos": [],
+      "sourceUrl": "https://www.hueiyeh.com.tw/news_detail/244",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "jinche-diner", "name": "金車小館", "category": "中式",
-      "summary": "敦化北路巷內的小館，午餐可試試雞腿飯。", "description": "敦化北路4巷的台式餐館，營業時段請以店家現場為準。",
-      "peerNote": "雞腿飯很讚。", "address": "台北市松山區敦化北路4巷47號",
-      "coordinates": [25.0510, 121.5471], "coordinatesApproximate": true,
-      "hours": { "weekday": "11:00–14:00", "weekend": "週六 11:00–14:00；週日休" }, "price": { "min": 100, "max": 120, "note": "雞腿飯110，一主三副" }, "photos": [],
-      "sourceUrl": "https://footinder.app/places/642a2a7ea99b7dfe5fea34a8", "verifiedAt": "2026-09-13"
+      "id": "jinche-diner",
+      "name": "金車小館",
+      "category": "中式",
+      "summary": "敦化北路巷內的小館，午餐可試試雞腿飯。",
+      "description": "敦化北路4巷的台式餐館，營業時段請以店家現場為準。",
+      "peerNote": "雞腿飯很讚。",
+      "address": "台北市松山區敦化北路4巷47號",
+      "coordinates": [
+        25.051,
+        121.5471
+      ],
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "11:00–14:00",
+        "weekend": "週六 11:00–14:00；週日休"
+      },
+      "price": {
+        "min": 100,
+        "max": 120,
+        "note": "雞腿飯110，一主三副"
+      },
+      "photos": [],
+      "sourceUrl": "https://footinder.app/places/642a2a7ea99b7dfe5fea34a8",
+      "verifiedAt": "2026-09-13"
     },
     {
-      "id": "ririsheng-nanjing", "name": "日日升元気ご膳・南京店", "category": "健康餐",
-      "summary": "輕食餐盒與健康餐，適合想吃得清爽的午餐。", "description": "遼寧街155巷的餐盒店。外送平台餐盒價格可能與現場不同。",
-      "peerNote": "健康餐好吃。", "address": "台北市中山區遼寧街155巷41號",
-      "coordinates": [25.0533, 121.5427], "coordinatesApproximate": true,
-      "hours": { "weekday": "10:00–19:30", "weekend": "10:00–19:30" }, "hoursAreDelivery": true, "price": { "min": 196, "max": 300, "note": "外送平台部分餐盒價格，門市可能不同" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw/store/%E6%97%A5%E6%97%A5%E5%8D%87%E5%85%83%E6%B0%97%E3%81%93%E8%86%B3-x-%E8%BC%95%E9%A3%9F%E9%A4%90%E7%9B%92-%E5%8D%97%E4%BA%AC%E5%BA%97/1raHpXcMUb28zS78B74slA", "verifiedAt": "2026-09-13"
-    },
-    {
-      "id": "jiabaonainai-liaoning", "name": "呷飽奶奶健康餐", "category": "健康餐",
-      "summary": "遼寧街的健康餐盒。", "description": "位於遼寧街112號，供應雞腿、雞胸與魚類等健康餐盒；現場價格與營業時間請再確認。",
-      "peerNote": "調味很清淡的健康餐。", "address": "台北市中山區遼寧街112號1樓",
-      "coordinates": null, "coordinatesApproximate": true,
-      "hours": { "weekday": "外送 11:00–14:00；現場待確認", "weekend": null }, "hoursAreDelivery": true, "price": { "min": 179, "max": 239, "note": "外送平台部分餐盒價格，門市可能不同" }, "photos": [],
-      "sourceUrl": "https://www.ubereats.com/tw/store/%E5%91%B7%E9%A3%BD%E5%A5%B6%E5%A5%B6%E5%81%A5%E5%BA%B7%E9%A4%90/lyuqdW3TUiOv2iIjaPWK9g", "verifiedAt": "2026-09-13"
+      "id": "jiabaonainai-liaoning",
+      "name": "呷飽奶奶健康餐",
+      "category": "健康餐",
+      "summary": "遼寧街的健康餐盒。",
+      "description": "位於遼寧街112號，供應雞腿、雞胸與魚類等健康餐盒；現場價格與營業時間請再確認。",
+      "peerNote": "調味很清淡的健康餐。",
+      "address": "台北市中山區遼寧街112號1樓",
+      "coordinates": null,
+      "coordinatesApproximate": true,
+      "hours": {
+        "weekday": "外送 11:00–14:00；現場待確認",
+        "weekend": null
+      },
+      "hoursAreDelivery": true,
+      "price": {
+        "min": 179,
+        "max": 239,
+        "note": "外送平台部分餐盒價格，門市可能不同"
+      },
+      "photos": [],
+      "sourceUrl": "https://www.ubereats.com/tw/store/%E5%91%B7%E9%A3%BD%E5%A5%B6%E5%A5%B6%E5%81%A5%E5%BA%B7%E9%A4%90/lyuqdW3TUiOv2iIjaPWK9g",
+      "verifiedAt": "2026-09-13"
     }
   ]
 }
