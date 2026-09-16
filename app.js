@@ -23,7 +23,13 @@ function localDraft(publishedUpdatedAt) {
 function photoMarkup(place, className) {
   const photo = String(place.coverPhoto || place.photos?.[0] || "").split(/[;,\n]/)[0].trim();
   const src = photo && safeUrl(photo);
-  return `<div class="${className} category-${categoryClass[place.category] || "health"}"><span aria-hidden="true">${categoryEmoji[place.category] || "🍽️"}</span>${src ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(place.name)}照片" loading="lazy" onerror="this.remove()">` : ""}</div>`;
+  const position = place.coverPosition || {};
+  const clamp = (value, min, max, fallback) => Number.isFinite(Number(value)) ? Math.min(max, Math.max(min, Number(value))) : fallback;
+  const x = clamp(position.x, 0, 100, 50);
+  const y = clamp(position.y, 0, 100, 50);
+  const zoom = clamp(position.zoom, 100, 200, 100);
+  const imageStyle = `object-position:${x}% ${y}%;transform:scale(${zoom / 100});transform-origin:${x}% ${y}%;`;
+  return `<div class="${className} category-${categoryClass[place.category] || "health"}"><span aria-hidden="true">${categoryEmoji[place.category] || "🍽️"}</span>${src ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(place.name)}照片" loading="lazy" style="${imageStyle}" onerror="this.remove()">` : ""}</div>`;
 }
 function priceLabel(place) {
   if (!place.price) return "價格待確認";
@@ -145,7 +151,7 @@ function bindEvents() {
 async function start() {
   bindEvents();
   try {
-    const response = await fetch("./data/places.json?v=20260916-3");
+    const response = await fetch("./data/places.json?v=20260916-4");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     const draft = localDraft(data.updatedAt);

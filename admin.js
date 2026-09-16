@@ -1,5 +1,5 @@
 const DRAFT_KEY = "nanjing-fuxing-places-draft-v1";
-const DATA_URL = "./data/places.json?v=20260916-3";
+const DATA_URL = "./data/places.json?v=20260916-4";
 const admin = { data: null, map: null, pin: null, dragFrom: null, editingId: null };
 const $ = (selector) => document.querySelector(selector);
 
@@ -86,6 +86,29 @@ function isImagePath(value) {
   return /^(https?:\/\/|\.\/images\/)/i.test(value);
 }
 
+function coverSettings(form) {
+  return {
+    x: Number(form.get("coverFocalX")), y: Number(form.get("coverFocalY")), zoom: Number(form.get("coverZoom"))
+  };
+}
+
+function updateCoverPreview() {
+  const form = $("#place-form");
+  const image = $("#cover-preview-image");
+  const source = form.elements.coverPhoto.value.trim();
+  const { x, y, zoom } = coverSettings(new FormData(form));
+  $("#cover-focal-x").value = `${x}%`;
+  $("#cover-focal-y").value = `${y}%`;
+  $("#cover-zoom").value = `${zoom}%`;
+  image.hidden = !source;
+  $("#cover-preview-empty").hidden = Boolean(source);
+  if (!source) return;
+  image.src = source;
+  image.style.objectPosition = `${x}% ${y}%`;
+  image.style.transform = `scale(${zoom / 100})`;
+  image.style.transformOrigin = `${x}% ${y}%`;
+}
+
 function placeFromForm(form, existing = null) {
   const value = (name) => String(form.get(name) ?? "").trim();
   const name = value("name");
@@ -110,6 +133,7 @@ function placeFromForm(form, existing = null) {
   if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) throw new Error("資訊來源請填入 http 或 https 網址。");
   const coverPhoto = value("coverPhoto");
   const pricePhotos = imagePaths(form.get("pricePhotos"));
+  const position = coverSettings(form);
   if (coverPhoto && !isImagePath(coverPhoto)) throw new Error("店面封面請填入 http(s) 網址或 ./images/ 路徑。");
   if (pricePhotos.some((photo) => !isImagePath(photo))) throw new Error("每張餐點／價格圖片都請填入 http(s) 網址或 ./images/ 路徑。");
 
@@ -125,6 +149,7 @@ function placeFromForm(form, existing = null) {
     photos: existing?.photos || [], sourceUrl: sourceUrl || null, verifiedAt: todayInTaipei()
   };
   if (coverPhoto) place.coverPhoto = coverPhoto; else delete place.coverPhoto;
+  if (coverPhoto) place.coverPosition = position; else delete place.coverPosition;
   if (pricePhotos.length) place.pricePhotos = pricePhotos; else delete place.pricePhotos;
   if (value("peerNote")) place.peerNote = value("peerNote"); else delete place.peerNote;
   if (weekendClosed) place.closedPeriods = ["weekend"]; else delete place.closedPeriods;
@@ -141,6 +166,7 @@ function resetForm() {
   $("#form-submit").textContent = "加入店家與排序清單 →";
   $("#cancel-edit").hidden = true;
   $("#place-form [name=weekend]").disabled = false;
+  updateCoverPreview();
   if (admin.pin) { admin.pin.remove(); admin.pin = null; }
 }
 
@@ -165,6 +191,9 @@ function loadPlaceForEdit(id) {
   form.elements.priceNote.value = place.price?.note || "";
   form.elements.sourceUrl.value = place.sourceUrl || "";
   form.elements.coverPhoto.value = place.coverPhoto || place.photos?.[0] || "";
+  form.elements.coverFocalX.value = place.coverPosition?.x ?? 50;
+  form.elements.coverFocalY.value = place.coverPosition?.y ?? 50;
+  form.elements.coverZoom.value = place.coverPosition?.zoom ?? 100;
   form.elements.pricePhotos.value = (place.pricePhotos || []).join("\n");
   form.elements.latitude.value = place.coordinates?.[0] ?? "";
   form.elements.longitude.value = place.coordinates?.[1] ?? "";
@@ -176,6 +205,7 @@ function loadPlaceForEdit(id) {
   $("#cancel-edit").hidden = false;
   if (place.coordinates) setPin(place.coordinates[0], place.coordinates[1], true);
   else if (admin.pin) { admin.pin.remove(); admin.pin = null; }
+  updateCoverPreview();
 }
 
 function setPin(latitude, longitude, pan = false) {
@@ -226,6 +256,7 @@ function bindEvents() {
     weekend.disabled = event.target.checked;
     if (event.target.checked) weekend.value = "";
   });
+  ["coverPhoto", "coverFocalX", "coverFocalY", "coverZoom"].forEach((name) => $("#place-form [name=" + name + "]").addEventListener("input", updateCoverPreview));
   $("#order-list").addEventListener("click", (event) => {
     const button = event.target.closest("button[data-move]");
     if (!button) return;
